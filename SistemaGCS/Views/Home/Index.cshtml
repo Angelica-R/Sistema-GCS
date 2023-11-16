@@ -1,0 +1,194 @@
+﻿@model List<SistemaGCS.Models.Tipo_Usuario>
+@{
+    ViewBag.Title = "Index";
+    string contenido = "";
+}
+
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/TipoUsuarios/Index">Categorias</a></li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header">Ver Grafico Pie</div>
+
+    @*<table id="SinSearch" class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width:50px">Nro.</th>
+                <th style="width:200px">Categoría</th>
+                <th style="width:250px">Cantidad de Productos</th>
+                <th style="width:100px">Porcentaje</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                categoria = m.NOMBRE;
+                valor = m.PRODUCTO.Count();
+                contenido = contenido + "{ name: " + "'" + categoria + "', " + "y: " + valor + "},";
+                double porcentaje = (double)m.PRODUCTO.Count() / totalProductos * 100;
+                <tr>
+                    <th>@(m.IDCATEGORIA)</th>
+                    <th>@(m.NOMBRE)</th>
+                    <th>@(m.PRODUCTO.Count())</th>
+                    <th>@porcentaje.ToString("0.00")%</th>
+                </tr>
+            }
+            <tr style="font-weight:bold;">
+                <th></th>
+                <th>Total:</th>
+                <td>@totalProductos</td>
+                <td>100%</td>
+            </tr>
+        </tbody>
+
+    </table>*@
+    <br />
+    @*@Html.Raw(contenido)*@
+    <br />
+
+    <div class="card-body">
+        <div id="container" style="min-width:310px; height:400px; margin: 0 auto"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            // Data retrieved from https://netmarketshare.com
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Gráfico de Cantidad de Productos por Categoría',
+                    align: 'left'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: '%'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Porcentaje',
+                    colorByPoint: true,
+                    data: [
+                        @Html.Raw(contenido)
+                    ]
+                }]
+            });
+
+        });
+
+    });
+</script>
+
+@*<header class="bg-info text-white text-center py-5">
+        <h1 style="color: #F7F7FC">Bienvenido al Sistema</h1>
+        <img src="~/Source/img/avatars/imgbienv2.png" alt="Imagen de bienvenida" width="300" height="auto">
+
+    </header>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <h2>Descripción del Sistema</h2>
+                <p>
+                    El Sistema de Gestión de Configuración de Software (SGCS) es una poderosa plataforma diseñada para facilitar la gestión eficiente y controlada de la configuración de software en cualquier entorno de desarrollo. Este sistema proporciona a los equipos de desarrollo y a las organizaciones las herramientas necesarias para administrar, rastrear y mantener registros de todos los componentes y cambios relacionados con el software, garantizando la integridad y calidad del producto final.
+                </p>
+            </div>
+
+    </div>*@
+
+@*<div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Email Statistics</h4>
+                            <p class="card-category">Last Campaign Performance</p>
+                        </div>
+                        <div class="card-body ">
+                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                            <div class="legend">
+                                <i class="fa fa-circle text-info"></i> Open
+                                <i class="fa fa-circle text-danger"></i> Bounce
+                                <i class="fa fa-circle text-warning"></i> Unsubscribe
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">Users Behavior</h4>
+                            <p class="card-category">24 Hours performance</p>
+                        </div>
+                        <div class="card-body ">
+                            <div id="chartHours" class="ct-chart"></div>
+                        </div>
+                        <div class="card-footer ">
+                            <div class="legend">
+                                <i class="fa fa-circle text-info"></i> Open
+                                <i class="fa fa-circle text-danger"></i> Click
+                                <i class="fa fa-circle text-warning"></i> Click Second Time
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Updated 3 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title">2017 Sales</h4>
+                            <p class="card-category">All products including Taxes</p>
+                        </div>
+                        <div class="card-body ">
+                            <div id="chartActivity" class="ct-chart"></div>
+                        </div>
+                        <div class="card-footer ">
+                            <div class="legend">
+                                <i class="fa fa-circle text-info"></i> Tesla Model S
+                                <i class="fa fa-circle text-danger"></i> BMW 5 Series
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-check"></i> Data information certified
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@

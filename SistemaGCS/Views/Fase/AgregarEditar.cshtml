@@ -1,0 +1,63 @@
+﻿@model SistemaGCS.Models.Fase
+@{ ViewBag.Title = "Agregar";
+    List<SistemaGCS.Models.Metodologia> metodologias = ViewBag.Metodologia;
+}
+
+
+<nav class="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Fase/Index">Fase</a></li>
+        <li class="breadcrumb-item active">@(Model.Id_fase > 0 ? Model.Nombre  : "Nuevo Registro")</li>
+    </ol>
+</nav>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Guardar", "Fase", FormMethod.Post, new { id = "frm-categoria" }))
+            {
+                @Html.HiddenFor(x => x.Id_fase)
+                <div class="card">
+                    <div class="card-header bg-primary text-white">Informacion del Fase</div>
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <label for="Nombre" class="form-label">
+                                <i class="fas fa-user"></i> Nombre
+                            </label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Estado" class="form-label">
+                                <i class="fas fa-check-circle"></i> Metodologia
+                            </label>
+                            <select name="Id_metodologia" class="form-control">
+                                <option @(Model.Id_metodologia.Equals("") ? "selected" : "") value="">--Seleccione Metodologia--</option>
+                                @foreach (var t in metodologias)
+                                {
+                                    <option @(Model.Id_metodologia.Equals(t.Id_metodologia) ? "selected" : "")
+                                            value="@t.Id_metodologia">
+                                        @t.Nombre
+                                    </option>
+                                }
+                            </select>  @Html.ValidationMessageFor(x => x.Id_metodologia, null, new { @class = "label label-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer text-end">
+                        <button type="submit" class="btn btn-outline-primary">GUARDAR</button>
+                        <a href="~/Fase" class="btn btn-outline-danger">CANCELAR</a>
+                    </div>
+                    <br /><br /><br />
+                </div>}
+
+        </div>
+    </div>
+</div>

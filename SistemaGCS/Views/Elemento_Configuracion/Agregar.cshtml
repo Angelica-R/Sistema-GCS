@@ -1,0 +1,95 @@
+﻿@model SistemaGCS.Models.Elemento_Configuracion
+@{ ViewBag.Title = "Agregar";
+    List<SistemaGCS.Models.Fase> fase = ViewBag.Fase;
+
+
+
+
+
+}
+
+
+
+<nav class="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Elemento_Configuracion/Index">Usuario</a></li>
+        <li class="breadcrumb-item active">@(Model.Id_elementoconfiguracion > 0 ? Model.Nombre +"," + Model.Nomenclatura : "Nuevo Registro")</li>
+    </ol>
+</nav>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Guardar", "Elemento_Configuracion", FormMethod.Post, new { id = "frm-categoria" }))
+            {
+                @Html.HiddenFor(x => x.Id_elementoconfiguracion)
+                <div class="card">
+                    <div class="card-header bg-primary text-white">Informacion del Elemento Configuracion</div>
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <label for="Nombre" class="form-label">
+                                <i class="fas fa-user"></i> Codigo
+                            </label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.Codigo, new { @class = "form-control" })
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Codigo, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Nombre" class="form-label">
+                                <i class="fas fa-user"></i> Nombre
+                            </label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="Nombre" class="form-label">
+                                <i class="fas fa-user"></i> Nomenclatura
+                            </label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.Nomenclatura, new { @class = "form-control" })
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Nomenclatura, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Estado" class="form-label">
+                                <i class="fas fa-check-circle"></i> Fase
+                            </label>
+                            <select name="Id_fase" class="form-control">
+                                <option @(Model.Id_fase.Equals("") ? "selected" : "") value="">--Seleccione fase--</option>
+                                @foreach (var t in fase)
+                                {
+                                    <option @(Model.Id_fase.Equals(t.Id_fase) ? "selected" : "")
+                                            value="@t.Id_fase">
+                                        @t.Nombre - @t.Metodologia.Nombre
+                                    </option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Id_fase, null, new { @class = "label label-danger" })
+                        </div>
+
+
+                    </div>
+
+                    <div class="card-footer text-end">
+                        <button type="submit" class="btn btn-outline-primary">GUARDAR</button>
+                        <a href="~/Elemento_Configuracion" class="btn btn-outline-danger">CANCELAR</a>
+                    </div>
+                </div>}
+
+        </div>
+    </div>
+</div>
