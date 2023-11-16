@@ -2,14 +2,14 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<br />
+<br />
 <h2>Proyecto</h2>
 <h2 class="pagegeader">
     <a href="~/Proyecto/Estado" class="btn btn-primary text-right">Nuevo Registro</a>
 
 </h2>
-<br />
-<br />
+
 @using (Html.BeginForm("Index", "Proyecto", FormMethod.Post))
 {
 
@@ -44,12 +44,12 @@
                 
                 <td>
 
-                    <a href="~/Proyecto/Agregar/@m.Id_proyecto" class="btn btn-success">Editar</a>
+                    <a href="~/Proyecto/Agregar/@m.Id_proyecto" class="btn btn-outline-success"><i class="fa-regular fa-pen-to-square"></i></a>
                     @*<a href="~/Miembro_Proyecto/Agregar/@m.Id_proyecto" class="btn btn-success">Agregar Miembros al Proyecto</a>*@
                     @*<a href="~/Miembro_Proyecto/Agregar/@m.Id_proyecto" class="btn btn-info">Agregar Miembros al Proyecto</a>*@
                     @*<a onclick="return confirm('Usted esta?')" href="~/Miembro_Proyecto/Agregar/@m.Id_proyecto" class="btn btn-info">Agregar Miembros al Proyecto</a>*@
-                    <a href="~/Miembro_Proyecto/IndexListar/@m.Id_proyecto" class="btn btn-outline-info">Ver Miembros</a>
-                    <a href="~/Fase/IndexListar/@m.Id_metodologia" class="btn btn-outline-warning">Ver Fases</a>
+                    <a href="~/Miembro_Proyecto/IndexListar/@m.Id_proyecto" class="btn btn-outline-info"><i class="fa-solid fa-users"></i></a>
+                    <a href="~/Fase/IndexListar/@m.Id_metodologia" class="btn btn-outline-warning"><i class="fa-solid fa-bars-progress"></i></a>
 
 
                 </td>

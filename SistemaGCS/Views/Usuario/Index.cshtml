@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<br />
 <h2>Usuarios</h2>
 <h2 class="pagegeader">
     <a href="~/Usuario/Agregar" class="btn btn-primary text-right">Nuevo Registro</a>
@@ -35,11 +35,12 @@
                 <td>@(m.Correo)</td>
                 <td>@(m.Estado)</td>
                 <td>
-                    <a href="~/Usuario/Agregar/@m.Id_usuario" class="btn btn-outline-success">Editar</a>
+                   
 
-                    <form method="post" asp-action="Eliminar" asp-controller="Usuario">
+                    <form method="post" @*asp-action="Eliminar"*@ asp-controller="Usuario">
+                        <a href="~/Usuario/Agregar/@m.Id_usuario" class="btn btn-outline-success"><i class="fa-regular fa-pen-to-square"></i></a>
                         <input type="hidden" name="Id_usuario" value="@m.Id_usuario" />
-                        <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                        <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i></button>
                     </form>
                 </td>
             </tr>

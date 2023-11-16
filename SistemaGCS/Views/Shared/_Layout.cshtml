@@ -19,18 +19,18 @@
     <link href="~/Source/css/sweetalert2.min.css" rel="stylesheet" />
     <link href="~/Source/css/sweetalert.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />*@
     <!--Datatables-->
 
-    <link href="~/Source/Datatables/datatables.min.css" rel="stylesheet" />
+    @*<link href="~/Source/Datatables/datatables.min.css" rel="stylesheet" />
     <link href="~/Source/Datatables/css/dataTables.semanticui.min.css" rel="stylesheet" />
-    <link href="~/Source/Datatables/css/dataTables.foundation.min.css" rel="stylesheet" />
-    <!--highchart-->
-    <script src="~/Source/js/highcharts.js"></script>
+    <link href="~/Source/Datatables/css/dataTables.foundation.min.css" rel="stylesheet" />*@
+    <!--highchart-->    
+    @*<script src="~/Source/js/highcharts.js"></script>
     <script src="~/Source/js/highcharts-3d.js"></script>
     <script src="~/Source/js/highcharts-more.js"></script>
     <script src="~/Source/js/exporting.js"></script>
-    <script src="~/Source/js/offline-exporting.js"></script>
+    <script src="~/Source/js/offline-exporting.js"></script>*@
     @*<link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />*@
     @*<link href="~/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />*@
     @*<link href="~/assets/css/demo.css" rel="stylesheet" />*@
@@ -150,32 +150,14 @@
 
                 <form class="d-none d-sm-inline-block">
                     <div class="input-group input-group-navbar">
-                        <h3>Sistema Gestion de la Configuracion de Softwaree </h3>
+                        <h3>Sistema Gestion de la Configuracion de Software </h3>
                     </div>
 
                 </form>
 
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
-                        <li class="nav-item dropdown">
-                            <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-                                <div class="position-relative">
-                                    <i class="align-middle" data-feather="bell"></i>
-                                    <span class="indicator">4</span>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-                                @*<div class="dropdown-menu-header">
-                                4 Notificaciones Nuevas
-                            </div>*@
 
-
-
-                                <div class="dropdown-menu-footer">
-                                    <a href="#" class="text-muted">Mostrar todas las Notificaciones</a>
-                                </div>
-                            </div>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
                                 <div class="position-relative">
@@ -183,11 +165,11 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
-                                @*<div class="dropdown-menu-header">
-                                <div class="position-relative">
-                                    4 Nuevos Mensajes
+                                <div class="dropdown-menu-header">
+                                    <div class="position-relative">
+                                        4 Nuevos Mensajes
+                                    </div>
                                 </div>
-                            </div>*@
 
 
 
@@ -202,8 +184,8 @@
                             </a>
 
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-
-                                @*<img src="~/Source/img/avatars/perfil.png" class="avatar img-fluid rounded me-1" alt="Administrador" />*@ <span class="text-dark">Administrador</span>
+                                <i class="fa-solid fa-circle-user" class="avatar img-fluid rounded me-1" alt="Administrador"></i><span class="text-dark"> Administrador</span>
+                                @*<img src="~/Source/img/avatars/perfil.png" class="avatar img-fluid rounded me-1" alt="Administrador" />*@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -220,9 +202,9 @@
             </nav>
 
             <div class="container">
-                <h1 class="justify-content-md-between">
-                    Sistemas Web MVC
-                </h1>
+                @*<h1 class="justify-content-md-between">
+                        Sistemas Web MVC
+                    </h1>*@
                 @RenderBody()
             </div>
             <!--Bootstrap-->
@@ -233,33 +215,38 @@
             <script src="~/Source/Datatables/datatables.min.js"></script>
 
             @*<footer class="footer">
-            <div class="container-fluid">
-                <div class="row text-muted">
-                    <div class="col-6 text-start">
-                        <p class="mb-0">
-                            <a href="#" class="text-muted"><strong>@DateTime.Now.Year Sistema de Gestión de la Configuración de Software</strong></a> &copy;
-                        </p>
-                    </div>
-                    <div class="col-6 text-end">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="#">Version 1.0</a>
-                            </li>
+                    <div class="container-fluid">
+                        <div class="row text-muted">
+                            <div class="col-6 text-start">
+                                <p class="mb-0">
+                                    <a href="#" class="text-muted"><strong>@DateTime.Now.Year Sistema de Gestión de la Configuración de Software</strong></a> &copy;
+                                </p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a class="text-muted" href="#">Version 1.0</a>
+                                    </li>
 
 
-                        </ul>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </footer>*@
+                </footer>*@
         </div>
     </div>
 
+    <script src="~/Source/js/app.js"></script>
+    <script src="~/Source/js/jquery-3.5.1.js"></script>
+    <script src="~/Source/js/jquery.dataTables.min.js"></script>
+    <script src="~/Source/js/jquery.validate.js"></script>
+    <script src="~/Source/js/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Source/js/sweetalert.min.js"></script>
 
-  
 
-    @*<script>
-        $('#example').DataTable();
+
+    <script>
         $(document).ready(function () {
             $("#datatable").DataTable({
                 "aLengthMenu": [[5, 10, 25, 50, 100, 200, -1], [5, 10, 25, 50, 100, 200, "Todos"]],
@@ -304,81 +291,59 @@
                 "paging": false
             });
         });
-    </script>*@
+    </script>
+
+
+
+    @*<script>
+            $('#example').DataTable();
+            $(document).ready(function () {
+                $("#datatable").DataTable({
+                    "aLengthMenu": [[5, 10, 25, 50, 100, 200, -1], [5, 10, 25, 50, 100, 200, "Todos"]],
+                    "bDestroy": true,
+                    "language": {
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ning?n dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "?ltimo",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                });
+                $('#ejemplo2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]]
+                });
+                $('#scroolvertical').DataTable({
+                    "scrollY": "200px",
+                    "scrollCollapse": true,
+                    "paging": false
+                });
+            });
+        </script>*@
 
 </body>
 
 
 </html>
-
-<script>
-    //$(document).ready(function () {
-    //    $('#Zero').DataTable();
-    //});
-
-    //$(document).ready(function () {
-    //    $('#Vertical').DataTable({
-    //        scrollY: '200px',
-    //        scrollCollapse: true,
-    //        paging: false,
-    //    });
-    //});
-
-    //$(document).ready(function () {
-    //    $('#Horizontal').DataTable({
-    //        scrollX: true,
-    //    });
-    //});
-
-    //$(document).ready(function () {
-    //    $('#HyV').DataTable({
-    //        scrollY: 200,
-    //        scrollX: true,
-    //    });
-    //});
-
-
-    $(document).ready(function () {
-        $("#example").DataTable({
-
-            "aLengthMenu": [[3, 5, 10, 25, 50, 100, 200, -1], [3, 5, 10, 25, 50, 100, 200, "Todos"]],
-            "bDestroy": true,
-            "language": {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ning?n dato disponible en esta tabla",
-                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "?ltimo",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-            }
-        });
-
-        $('#ejemplo2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]]
-        });
-
-    });
-
-</script>

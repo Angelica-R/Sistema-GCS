@@ -20,23 +20,30 @@
         z-index: 1000;
     }
 
-        .message-popup label {
-            display: block;
-            text-align: center;
-        }
+    .message-popup label {
+        display: block;
+        text-align: center;
+    }
 
     /* Estilos para la casilla de verificación invisible */
     .popup-checkbox {
         display: none;
     }
 
-        /* Estilos para mostrar el mensaje emergente cuando la casilla está marcada */
-        .popup-checkbox:checked + .message-popup {
-            display: block;
-        }
+     /* Estilos para mostrar el mensaje emergente cuando la casilla está marcada */
+    .popup-checkbox:checked + .message-popup {
+       display: block;
+    }
+
+    /* Estilos para el icono de ojo */
+    .eye-icon {
+        cursor: pointer;
+        user-select: none;
+    }
 </style>
 
-
+<br />
+<br />
 <nav class="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="~/Usuario/Index">Usuarios</a></li>
@@ -45,116 +52,133 @@
         </li>
     </ol>
 </nav>
-
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-6">
             @using (Html.BeginForm("Guardar", "Usuario", FormMethod.Post, new { @id = "frm-categoria" }))
             {
                 @Html.HiddenFor(x => x.Id_usuario)
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    Información del Usuario
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Información del Usuario
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="Nombre" class="form-label">
+                                <i class="fas fa-user"></i> Nombre
+                            </label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="Apellido" class="form-label">
+                                <i class="fas fa-user"></i> Apellido
+                            </label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Apellido, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="Correo" class="form-label">
+                                <i class="fas fa-envelope"></i> Correo
+                            </label>
+                            <div class="input-group">
+                                @Html.TextBoxFor(x => x.Correo, new { @class = "form-control" })
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Correo, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">
+                                <i class="fas fa-lock"></i> Password
+                            </label>
+                            <div class="input-group">
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control", @id = "Password" })
+                                <span class="input-group-text eye-icon" onclick="togglePassword()">
+                                    <i id="eyeIcon" class="fas fa-eye"></i>
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="Estado" class="form-label">
+                                <i class="fas fa-check-circle"></i> Estado
+                            </label>
+                            <select name="ESTADO" class="form-select">
+                                <option @(Model.Estado == "A" ? "Selected" : "") value="A">Activo</option>
+                                <option @(Model.Estado == "I" ? "Selected" : "") value="I">Inactivo</option>
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Estado, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label for="Tipo_Usuario" class="form-label">
+                                <i class="fas fa-user-cog"></i> Tipo de Usuario
+                            </label>
+                            <select name="Id_tipousuario" class="form-select">
+                                <option @(Model.Id_tipousuario.Equals("") ? "selected" : "") value="">--Seleccione--</option>
+                                @foreach (var t in tipousuario)
+                                {
+                                    <option @(Model.Id_tipousuario.Equals(t.Id_tipousuario) ? "selected" : "") value="@t.Id_tipousuario">
+                                        @t.Nombre
+                                    </option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Id_tipousuario, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-end">
+                        <!-- Casilla de verificación invisible para mostrar el mensaje emergente -->
+                        <input type="checkbox" class="popup-checkbox" id="successCheckbox" />
+
+                        <!-- Botón de Guardar -->
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Guardar
+                        </button>
+
+                        <!-- Etiqueta del mensaje emergente -->
+                        <label for="successCheckbox" class="message-popup">
+                            Usuario guardado con éxito.
+                        </label>
+
+                        <a href="~/Usuario" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
+                    </div>
+
+                    @*<div class="card-footer text-end">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+                            <a href="~/Usuario" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
+                        </div>*@
                 </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="Nombre" class="form-label">
-                            <i class="fas fa-user"></i> Nombre
-                        </label>
-                        <div class="input-group">
-                            @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
-                            <span class="input-group-text">
-                                <i class="fas fa-user"></i>
-                            </span>
-                        </div>
-                        @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "text-danger" })
-                    </div>
-                    <div class="mb-3">
-                        <label for="Apellido" class="form-label">
-                            <i class="fas fa-user"></i> Apellido
-                        </label>
-                        <div class="input-group">
-                            @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
-                            <span class="input-group-text">
-                                <i class="fas fa-user"></i>
-                            </span>
-                        </div>
-                        @Html.ValidationMessageFor(x => x.Apellido, null, new { @class = "text-danger" })
-                    </div>
-                    <div class="mb-3">
-                        <label for="Correo" class="form-label">
-                            <i class="fas fa-envelope"></i> Correo
-                        </label>
-                        <div class="input-group">
-                            @Html.TextBoxFor(x => x.Correo, new { @class = "form-control" })
-                            <span class="input-group-text">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                        </div>
-                        @Html.ValidationMessageFor(x => x.Correo, null, new { @class = "text-danger" })
-                    </div>
-                    <div class="mb-3">
-                        <label for="Password" class="form-label">
-                            <i class="fas fa-lock"></i> Password
-                        </label>
-                        <div class="input-group">
-                            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                            <span class="input-group-text">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </div>
-                        @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger" })
-                    </div>
-                    <div class="mb-3">
-                        <label for="Estado" class="form-label">
-                            <i class="fas fa-check-circle"></i> Estado
-                        </label>
-                        <select name="ESTADO" class="form-select">
-                            <option @(Model.Estado == "A" ? "Selected" : "") value="A">Activo</option>
-                            <option @(Model.Estado == "I" ? "Selected" : "") value="I">Inactivo</option>
-                        </select>
-                        @Html.ValidationMessageFor(x => x.Estado, null, new { @class = "text-danger" })
-                    </div>
-                    <div class="mb-3">
-                        <label for="Tipo_Usuario" class="form-label">
-                            <i class="fas fa-user-cog"></i> Tipo de Usuario
-                        </label>
-                        <select name="Id_tipousuario" class="form-select">
-                            <option @(Model.Id_tipousuario.Equals("") ? "selected" : "") value="">--Seleccione--</option>
-                            @foreach (var t in tipousuario)
-                            {
-                                <option @(Model.Id_tipousuario.Equals(t.Id_tipousuario) ? "selected" : "") value="@t.Id_tipousuario">
-                                    @t.Nombre
-                                </option>
-                            }
-                        </select>
-                        @Html.ValidationMessageFor(x => x.Id_tipousuario, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="card-footer text-end">
-                    <!-- Casilla de verificación invisible para mostrar el mensaje emergente -->
-                    <input type="checkbox" class="popup-checkbox" id="successCheckbox" />
-
-                    <!-- Botón de Guardar -->
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i> Guardar
-                    </button>
-
-                    <!-- Etiqueta del mensaje emergente -->
-                    <label for="successCheckbox" class="message-popup">
-                        Usuario guardado con éxito.
-                    </label>
-
-                    <a href="~/Usuario" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
-                </div>
-
-                @*<div class="card-footer text-end">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
-            <a href="~/Usuario" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
-        </div>*@
-            </div>
             }
         </div>
     </div>
 </div>
+
+<script>
+    // Función para mostrar/ocultar la contraseña
+    function togglePassword() {
+        var passwordInput = document.getElementById('Password');
+        var eyeIcon = document.getElementById('eyeIcon');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    }
+</script>
