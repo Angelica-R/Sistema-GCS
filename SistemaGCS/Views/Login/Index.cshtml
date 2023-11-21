@@ -21,6 +21,9 @@
 
     <link href="~/Source/css/app.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Agregamos la librería de Bootstrap Icons para el icono del ojo -->
+    <script src="https://kit.fontawesome.com/3a40882597.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -30,13 +33,10 @@
                 <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
                     <div class="d-table-cell align-middle">
 
-                   
-
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-4">
                                     <div class="text-center">
-
                                         <img src="~/Source/img/logo-login2.png" width="40%" height="auto" />
                                     </div>
                                     @using (Html.BeginForm())
@@ -47,9 +47,15 @@
                                                 <input class="form-control form-control-lg" type="email" name="Correo" placeholder="Introduce tu correo electrónico" />
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label"> Contraseña</label>
-                                                <input class="form-control form-control-lg" type="password" name="Password" placeholder="Ingresa tu contraseña" />
-                                               
+                                                <label class="form-label">Contraseña</label>
+                                                <div class="input-group">
+                                                    <input id="passwordInput" class="form-control form-control-lg" type="password" name="Password" placeholder="Ingresa tu contraseña" />
+                                                    <!-- Se utiliza "bi-eye-fill" y "bi-eye-slash-fill" para el icono del ojo -->
+                                                    <span class="input-group-text" id="togglePassword" onclick="togglePasswordVisibility()">
+                                                        <i id="eyeIcon" class="fa-solid fa-eye"></i>
+                                                        
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div class="mb-3">
                                                 <div><br /></div>
@@ -59,7 +65,6 @@
                                             </div>
                                             <div class="text-center mt-3">
                                                 <button class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> Iniciar Sesion </button>
-
                                             </div>
                                         </form>
                                     }
@@ -73,9 +78,24 @@
         </div>
     </main>
 
-
     <script src="~/Source/js/app.js"></script>
+    <script>
+        // Función para mostrar u ocultar la contraseña
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('passwordInput');
+            const eyeIcon = document.getElementById('eyeIcon');
 
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('bi-eye-fill');
+                eyeIcon.classList.add('bi-eye-slash-fill');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('bi-eye-slash-fill');
+                eyeIcon.classList.add('bi-eye-fill');
+            }
+        }
+    </script>
 </body>
 
 </html>

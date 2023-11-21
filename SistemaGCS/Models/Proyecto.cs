@@ -174,5 +174,14 @@ namespace SistemaGCS.Models
 
             return sc;
         }
+
+        public int ContarProyectosPorEstado(string estado)
+        {
+            using (var db = new ModelGCS())
+            {
+                return db.Proyecto.Count(p => p.Estado == estado);
+            }
+        }
+
     }
 }

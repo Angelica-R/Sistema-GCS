@@ -61,9 +61,9 @@ namespace SistemaGCS.Controllers
 
         public ActionResult Estado()
         {
-
-           
-            return View();
+           return View();
         }
+
+
     }
 }
