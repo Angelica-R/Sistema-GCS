@@ -1,13 +1,14 @@
 ﻿@model List<SistemaGCS.Models.Metodologia>
 @{ ViewBag.Title = "Index"; }
-
+<br />
+<br />
 <h2>Listado de Metodologia</h2>
 <h2 class="pagegeader">
     <a href="~/Metodologia/Agregar" class="btn btn-primary text-right">Nuevo Registro</a>
 
 </h2>
 <br />
-<br />
+
 @using (Html.BeginForm("Index", "Metodologia", FormMethod.Post))
 {
 
@@ -24,17 +25,18 @@
     <tbody>
         @foreach (var m in Model)
         {
-        <tr>
-            <td>@(m.Id_metodologia)</td>
-            <td>@(m.Nombre)</td>
-            
-            <td>
+            <tr>
+                <td>@(m.Id_metodologia)</td>
+                <td>@(m.Nombre)</td>
 
-                <a href="~/Metodologia/Agregar/@m.Id_metodologia" class="btn btn-outline-success">EDITAR</a>
-        
+                <td>
 
-            </td>
-        </tr>}
+                    <a href="~/Metodologia/Agregar/@m.Id_metodologia" class="btn btn-outline-success"><i class="fa-regular fa-pen-to-square"></i></a>
+
+
+                </td>
+            </tr>
+}
     </tbody>
 </table>
 

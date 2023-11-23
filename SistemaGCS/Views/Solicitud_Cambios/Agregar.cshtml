@@ -1,0 +1,71 @@
+﻿@model SistemaGCS.Models.Solicitud_Cambios
+@{
+    ViewBag.Title = "Agregar";
+    List<SistemaGCS.Models.Solicitud> tiposol = ViewBag.TipoSolicitud;
+}
+<br />
+<br />
+<nav class="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Solicitud_Cambios/Index">Solicitud de Cambios</a></li>
+        <li class="breadcrumb-item active">@(Model.Id_solicitud_cambios > 0 ? Model.Objetivo : "Nuevo Registro")</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Guardar", "Solicitud_Cambios", FormMethod.Post, new { id = "frm-categoria", @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.HiddenFor(x => x.Id_solicitud_cambios)
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">Información del Proyecto</div>
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Fecha)
+                @Html.TextBoxFor(x => x.Fecha, new { @type = "date", @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, seleccione una fecha válida.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(x => x.Objetivo)
+                @Html.TextBoxFor(x => x.Objetivo, new { @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, ingrese un objetivo válido.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(x => x.Descripcion)
+                @Html.TextBoxFor(x => x.Descripcion, new { @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, ingrese una descripción válida.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(x => x.Respuesta)
+                <select name="Respuesta" class="form-control" required="required">
+                    <option @(Model.Respuesta == "Positiva" ? "Selected" : "") value="Positiva">Positiva</option>
+                    <option @(Model.Respuesta == "Negativa" ? "Selected" : "") value="Negativa">Negativa</option>
+                </select>
+                <div class="invalid-feedback">Por favor, seleccione una respuesta válida.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(x => x.Id_solicitud)
+                <select name="Id_solicitud" class="form-control" required="required">
+                    <option @(Model.Id_solicitud.Equals("") ? "selected" : "") value="">--Seleccione--</option>
+                    @foreach (var t in tiposol)
+                    {
+                        <option @(Model.Id_solicitud.Equals(t.Id_solicitud) ? "selected" : "") value="@t.Id_solicitud">
+                            @t.Requerimiento
+                        </option>
+                    }
+                </select>
+                <div class="invalid-feedback">Por favor, seleccione una solicitud válida.</div>
+            </div>
+        </div>
+
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="~/Solicitud_Cambios" class="btn btn-danger">Cancelar</a>
+        </div>
+        <br /><br /><br />
+    </div>
+}

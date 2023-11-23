@@ -1,13 +1,14 @@
 ﻿@model List<SistemaGCS.Models.Fase>
 @{ ViewBag.Title = "Index"; }
-
+<br />
+<br />
 <h2>Listado de Fase</h2>
 <h2 class="pagegeader">
     <a href="~/Fase/AgregarEditar" class="btn btn-primary text-right">Nuevo Registro</a>
 
 </h2>
 <br />
-<br />
+
 @using (Html.BeginForm("Index", "Fase", FormMethod.Post))
 {
 
@@ -31,7 +32,7 @@
     <td>@(m.Metodologia.Nombre)</td>
     <td>
 
-        <a href="~/Fase/AgregarEditar/@m.Id_fase" class="btn btn-outline-success">EDITAR</a>
+        <a href="~/Fase/AgregarEditar/@m.Id_fase" class="btn btn-outline-success"><i class="fa-regular fa-pen-to-square"></i></a>
         @*<a onclick="return confirm('Esta Seguro que desea eliminar el registro?')" href="~/Fase/Eliminar/@m.Id_fase" class="btn btn-danger">ELIMINAR</a>*@
 
     </td>

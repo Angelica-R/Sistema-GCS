@@ -311,6 +311,20 @@
     <None Include="Properties\PublishProfiles\sistemaGCS-U3 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\sistemaGCS-U3 - Web Deploy.pubxml" />
     <Content Include="Views\Proyecto\Estado.cshtml" />
+    <Content Include="Views\Cronograma\Index.cshtml" />
+    <Content Include="Views\Cronograma\Agregar.cshtml" />
+    <Content Include="Views\Miembro_Elemento\Index.cshtml" />
+    <Content Include="Views\Miembro_Elemento\Agregar.cshtml" />
+    <Content Include="Views\Miembro_Elemento\IndexListar.cshtml" />
+    <Content Include="Views\Miembro_Elemento\AgregarUnico.cshtml" />
+    <Content Include="Views\Miembro_Proyecto\Index.cshtml" />
+    <Content Include="Views\Miembro_Proyecto\Agregar.cshtml" />
+    <Content Include="Views\Miembro_Proyecto\IndexListar.cshtml" />
+    <Content Include="Views\Miembro_Proyecto\AgregarUnico.cshtml" />
+    <Content Include="Views\Solicitud\Index.cshtml" />
+    <Content Include="Views\Solicitud\Agregar.cshtml" />
+    <Content Include="Views\Solicitud_Cambios\Index.cshtml" />
+    <Content Include="Views\Solicitud_Cambios\Agregar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,92 @@
+﻿@model SistemaGCS.Models.Miembro_Proyecto
+@{
+    ViewBag.Title = "Agregar";
+    List<SistemaGCS.Models.Proyecto> TipoP = ViewBag.Tipopro;
+    List<SistemaGCS.Models.Rol> TipoR = ViewBag.Tiporol;
+    List<SistemaGCS.Models.Usuario> TipoU = ViewBag.Tipousua;
+
+}
+
+<br />
+<!-- Page header -->
+<div class="full-box page-header">
+    <h3 class="text-left">
+        <i class="fas fa-plus fa-fw"></i> Administracion de MIEMBROS DE PROYECTO
+    </h3>
+</div>
+<br />
+<!--CONTENT-->
+<!-- Content here-->
+<div class="container-fluid">
+    @using (Html.BeginForm("Guardar", "Miembro_Proyecto", FormMethod.Post, new { id = "frm-productos" }))
+    {
+        @Html.HiddenFor(x => x.Id_miembro)
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <i class="fas fa-user-plus"></i> CREANDO NUEVO MIEMBRO
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Id_usuario" class="bmd-label-floating"><i class="fas fa-user"></i> Usuario:</label>
+                            <select name="Id_usuario" class="form-control">
+                                <option @(Model.Id_usuario.Equals("") ? "selected" : "") value="">--Seleccione--</option>
+                                @foreach (var t in TipoU)
+                                {
+                                    <option @(Model.Id_usuario.Equals(t.Id_usuario) ? "selected" : "")
+                                            value="@t.Id_usuario">
+                                        @t.Nombre
+                                    </option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Id_usuario, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Id_rol" class="bmd-label-floating"><i class="fas fa-user-tag"></i> Rol:</label>
+                            <select name="Id_rol" class="form-control">
+                                <option @(Model.Id_rol.Equals("") ? "selected" : "") value="">--Seleccione--</option>
+                                @foreach (var t in TipoR)
+                                {
+                                    <option @(Model.Id_rol.Equals(t.Id_rol) ? "selected" : "")
+                                            value="@t.Id_rol">
+                                        @t.Nombre
+                                    </option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Id_rol, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Id_proyecto" class="bmd-label-floating"><i class="fas fa-project-diagram"></i> PROYECTO:</label>
+                            <select name="Id_proyecto" class="form-control">
+                                <option @(Model.Id_proyecto.Equals("") ? "selected" : "") value="">--Seleccione--</option>
+                                @foreach (var t in TipoP)
+                                {
+                                    <option @(Model.Id_proyecto.Equals(t.Id_proyecto) ? "selected" : "")
+                                            value="@t.Id_proyecto">
+                                        @t.Nombre
+                                    </option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Id_proyecto, null, new { @class = "label label-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button type="submit" class="btn btn-outline-primary"><i class="far fa-save"></i> Registrar</button>
+                &nbsp; &nbsp;
+                <a href="~/Miembro_Proyecto" class="btn btn-outline-danger"><i class="fas fa-times"></i> Cancelar</a>
+            </div>
+        </div>
+    }
+</div>

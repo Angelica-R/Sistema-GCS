@@ -1,0 +1,81 @@
+﻿@model SistemaGCS.Models.Miembro_Elemento
+@{
+    ViewBag.Title = "Agregar";
+    List<SistemaGCS.Models.Elemento_Configuracion> tipoec = ViewBag.TipoEC;
+    List<SistemaGCS.Models.Miembro_Proyecto> tipom = ViewBag.Tipomiembros;
+
+}
+<br />
+<br />
+<nav class="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Miembro_Elemento/Index">Miembro Elemento</a></li>
+        <li class="breadcrumb-item active">@(Model.Id_miembroelemento > 0 ? Model.Id_miembro + "," + Model.Elemento_Configuracion : "Nuevo Registro")</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Guardar", "Miembro_Elemento", FormMethod.Post, new { id = "frm-categoria", @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.HiddenFor(x => x.Id_miembroelemento)
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <i class="fas fa-users-cog"></i> Información de Miembro Elemento
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Id_miembro)
+                <select name="Id_miembro" class="form-control">
+                    <option @(Model.Id_miembro.Equals("") ? "selected" : "") value="">--Seleccione--</option>
+                    @foreach (var t in tipom)
+                    {
+                        <option @(Model.Id_miembro.Equals(t.Id_miembro) ? "selected" : "")
+                                value="@t.Id_miembro">
+                            @t.Id_usuario
+                        </option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(x => x.Id_miembro, null, new { @class = "label label-danger" })
+            </div>
+
+
+            <br />
+            <div class="form-group">
+                <label for="Id_elementoconfiguracion"><i class="fas fa-cogs"></i> Elemento Configuración:</label>
+                <select name="Id_elementoconfiguracion" class="form-control" required>
+                    <option value="" selected>--Seleccione--</option>
+                    @foreach (var t in tipoec)
+                    {
+                        <option value="@t.Id_elementoconfiguracion" @(Model.Id_elementoconfiguracion.Equals(t.Id_elementoconfiguracion) ? "selected" : "")>
+                            @t.Nomenclatura
+                        </option>
+                    }
+                </select>
+                <div class="invalid-feedback">Por favor, seleccione un elemento de configuración.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="Url"><i class="fas fa-link"></i> URL:</label>
+                @Html.TextBoxFor(x => x.Url, new { @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, ingrese una URL válida.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="FechaInicio"><i class="far fa-calendar-alt"></i> Fecha de Inicio:</label>
+                @Html.TextBoxFor(x => x.FechaInicio, new { @type = "date", @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, ingrese una fecha de inicio válida.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="Fechafin"><i class="far fa-calendar-alt"></i> Fecha de Fin:</label>
+                @Html.TextBoxFor(x => x.Fechafin, new { @type = "date", @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, ingrese una fecha de fin válida.</div>
+            </div>
+        </div>
+
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Guardar</button>
+            <a href="~/Miembro_Elemento" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
+        </div>
+    </div>
+}

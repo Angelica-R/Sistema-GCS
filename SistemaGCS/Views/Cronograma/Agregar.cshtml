@@ -1,0 +1,54 @@
+﻿@model SistemaGCS.Models.Cronograma
+@{
+    ViewBag.Title = "Agregar";
+}
+<br />
+<br />
+<nav class="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/Cronograma/Index">Cronograma</a></li>
+        <li class="breadcrumb-item active">@(Model.Id_cronograma > 0 ? Model.Nombre : "Nuevo Registro")</li>
+    </ol>
+</nav>
+
+@using (Html.BeginForm("Guardar", "Cronograma", FormMethod.Post, new { id = "frm-categoria", @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.HiddenFor(x => x.Id_cronograma)
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">Informacion del Cronograma</div>
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Nombre)
+                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, ingrese un nombre válido.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(x => x.Descripcion)
+                @Html.TextBoxFor(x => x.Descripcion, new { @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, ingrese una descripción válida.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(x => x.FechaInicio)
+                @Html.TextBoxFor(x => x.FechaInicio, new { @type = "date", @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, seleccione una fecha de inicio válida.</div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(x => x.Fechafin)
+                @Html.TextBoxFor(x => x.Fechafin, new { @type = "date", @class = "form-control", required = "required" })
+                <div class="invalid-feedback">Por favor, seleccione una fecha de fin válida.</div>
+            </div>
+
+        </div>
+
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="~/Proyecto" class="btn btn-danger">Cancelar</a>
+        </div>
+        <br /><br /><br />
+    </div>
+}
